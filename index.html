@@ -3,591 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Psicología clínica infantil y adolescente en Tijuana. Soluciones prácticas, sin juicios, para familias que buscan el bienestar de sus hijos.">
-    <title>YOMICENT | Psicóloga Clínica Infantil y Adolescente en Tijuana</title>
-    
-    <!-- Fonts: Poppins (Headings) & Open Sans (Body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+    <title>CentMotion • Mental Fitness para Niños y Adolescentes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #2B4A5F;      /* Deep Ocean Trust */
-            --secondary: #E8A87C;    /* Warm TJ Sunset */
-            --accent: #FFFFFF;       /* Clean White */
-            --bg: #F9F6F0;           /* Warm Off-White (reduces anxiety) */
-            --text: #333333;
-            --text-light: #666666;
-            --radius: 16px;          /* Rounded corners for psychological safety */
-            --shadow: 0 4px 20px rgba(43, 74, 95, 0.08);
+            --olive: #5a6b4f;
+            --sand: #d4c4a8;
         }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-            overflow-x: hidden;
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        .heading-font {
+            font-family: 'Playfair Display', serif;
         }
 
-        h1, h2, h3, h4 { font-family: 'Poppins', sans-serif; color: var(--primary); }
+        .hero-bg {
+            background: linear-gradient(to bottom, #f9fafb, #f1f5f9);
+        }
+
+        .logo-container {
+            filter: drop-shadow(0 10px 25px rgba(90, 107, 79, 0.3));
+        }
+
+        .card {
+            background: white;
+            box-shadow: 0 10px 30px -8px rgb(0 0 0 / 0.08);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
         
-        /* Utilities */
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-family: 'Poppins', sans-serif;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
+        .card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.12);
         }
-        .btn-primary { background-color: var(--secondary); color: var(--primary); }
-        .btn-primary:hover { background-color: #d4956a; transform: translateY(-2px); box-shadow: var(--shadow); }
-        .btn-outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
-        .btn-outline:hover { background-color: var(--primary); color: var(--accent); }
 
-        /* Header & Nav */
-        header {
-            background: var(--accent);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 0;
+        .accent-button {
+            background-color: var(--olive);
+            transition: all 0.4s ease;
         }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.5rem; color: var(--primary); text-decoration: none; }
-        .logo span { color: var(--secondary); }
         
-        .nav-links { display: flex; gap: 25px; align-items: center; list-style: none; }
-        .nav-links a { text-decoration: none; color: var(--primary); font-weight: 600; font-size: 0.95rem; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--secondary); }
-
-        .header-actions { display: flex; gap: 15px; align-items: center; }
-        .lang-toggle {
-            background: var(--bg); border: 1px solid var(--primary); color: var(--primary);
-            padding: 6px 12px; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.85rem;
-        }
-        .crisis-btn {
-            background: #fff0f0; color: #c0392b; padding: 8px 16px; border-radius: 20px;
-            text-decoration: none; font-weight: 700; font-size: 0.85rem; display: flex; align-items: center; gap: 6px;
-            border: 1px solid #f5c6cb; transition: all 0.3s;
-        }
-        .crisis-btn:hover { background: #f5c6cb; }
-
-        /* Mobile Menu */
-        .mobile-menu-btn { display: none; background: none; border: none; font-size: 1.5rem; color: var(--primary); cursor: pointer; }
-
-        /* Hero Section */
-        .hero {
-            padding: 80px 0;
-            background: linear-gradient(135deg, var(--bg) 0%, #eef4f8 100%);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero::before {
-            content: ''; position: absolute; top: -50px; right: -50px; width: 300px; height: 300px;
-            background: var(--secondary); opacity: 0.1; border-radius: 50%;
-        }
-        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-        .hero-content h1 { font-size: 2.8rem; line-height: 1.2; margin-bottom: 20px; }
-        .hero-content p { font-size: 1.1rem; color: var(--text-light); margin-bottom: 30px; max-width: 500px; }
-        .trust-badges { display: flex; gap: 20px; margin-top: 30px; flex-wrap: wrap; }
-        .badge { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--primary); font-weight: 600; }
-        .badge i { color: var(--secondary); }
-        .hero-image {
-            background: #ddd; border-radius: var(--radius); height: 400px; display: flex; align-items: center; justify-content: center;
-            background-image: url('https://images.unsplash.com/photo-1591123120675-6f7f1aae0e5b?auto=format&fit=crop&q=80&w=800'); /* Diverse, warm family placeholder */
-            background-size: cover; background-position: center; box-shadow: var(--shadow);
-        }
-
-        /* Age Segmentation */
-        .age-segment { padding: 60px 0; background: var(--accent); text-align: center; }
-        .age-toggle {
-            display: inline-flex; background: var(--bg); padding: 5px; border-radius: 50px; margin-bottom: 30px;
-        }
-        .age-btn {
-            padding: 12px 30px; border: none; background: transparent; border-radius: 50px; cursor: pointer;
-            font-family: 'Poppins', sans-serif; font-weight: 600; color: var(--text-light); transition: all 0.3s;
-        }
-        .age-btn.active { background: var(--primary); color: var(--accent); box-shadow: 0 4px 10px rgba(43,74,95,0.2); }
-        .age-content { display: none; animation: fadeIn 0.5s ease; }
-        .age-content.active { display: block; }
-        .pain-points { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 30px; text-align: left; }
-        .pain-card { background: var(--bg); padding: 25px; border-radius: var(--radius); border-left: 4px solid var(--secondary); }
-        .pain-card h4 { margin-bottom: 10px; font-size: 1.1rem; }
-
-        /* Services */
-        .services { padding: 80px 0; }
-        .section-title { text-align: center; margin-bottom: 50px; }
-        .section-title h2 { font-size: 2.2rem; margin-bottom: 15px; }
-        .section-title p { color: var(--text-light); max-width: 600px; margin: 0 auto; }
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card {
-            background: var(--accent); padding: 35px; border-radius: var(--radius); box-shadow: var(--shadow);
-            transition: transform 0.3s; position: relative; overflow: hidden;
-        }
-        .service-card:hover { transform: translateY(-5px); }
-        .service-card i { font-size: 2rem; color: var(--secondary); margin-bottom: 20px; }
-        .service-card h3 { margin-bottom: 15px; font-size: 1.3rem; }
-        .service-card .guarantee { 
-            margin-top: 20px; padding-top: 15px; border-top: 1px solid #eee; 
-            font-size: 0.85rem; color: var(--primary); font-weight: 600; display: flex; align-items: center; gap: 8px;
-        }
-
-        /* About */
-        .about { padding: 80px 0; background: var(--primary); color: var(--accent); }
-        .about h2 { color: var(--accent); }
-        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .about-text p { margin-bottom: 20px; opacity: 0.9; }
-        .about-image {
-            background: rgba(255,255,255,0.1); border-radius: var(--radius); height: 350px;
-            display: flex; align-items: center; justify-content: center; font-style: italic; opacity: 0.8;
-        }
-
-        /* Blog/Tips */
-        .blog { padding: 80px 0; }
-        .blog-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .blog-card { background: var(--accent); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
-        .blog-img { height: 200px; background: #eee; }
-        .blog-content { padding: 25px; }
-        .blog-content h3 { font-size: 1.2rem; margin-bottom: 10px; }
-        .blog-content a { color: var(--secondary); text-decoration: none; font-weight: 600; }
-
-        /* Contact */
-        .contact { padding: 80px 0; background: var(--bg); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
-        .contact-form { background: var(--accent); padding: 40px; border-radius: var(--radius); box-shadow: var(--shadow); }
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--primary); font-size: 0.9rem; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-family: 'Open Sans', sans-serif;
-        }
-        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--secondary); }
-        .contact-info h3 { margin-bottom: 20px; }
-        .info-item { display: flex; gap: 15px; margin-bottom: 20px; align-items: flex-start; }
-        .info-item i { color: var(--secondary); margin-top: 4px; }
-
-        /* Footer */
-        footer { background: #1a2e3d; color: rgba(255,255,255,0.7); padding: 40px 0 20px; font-size: 0.9rem; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
-        .footer-grid h4 { color: var(--accent); margin-bottom: 15px; font-size: 1.1rem; }
-        .footer-grid a { color: rgba(255,255,255,0.7); text-decoration: none; display: block; margin-bottom: 8px; }
-        .footer-grid a:hover { color: var(--secondary); }
-        .copyright { text-align: center; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1); }
-
-        /* Sticky WhatsApp */
-        .whatsapp-sticky {
-            position: fixed; bottom: 25px; right: 25px; background: #25D366; color: white;
-            width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 2rem; box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); z-index: 999; text-decoration: none;
-            transition: transform 0.3s;
-        }
-        .whatsapp-sticky:hover { transform: scale(1.1); }
-        .whatsapp-tooltip {
-            position: absolute; right: 70px; background: white; color: var(--text); padding: 10px 15px;
-            border-radius: 8px; font-size: 0.85rem; white-space: nowrap; box-shadow: var(--shadow);
-            opacity: 0; transition: opacity 0.3s; pointer-events: none;
-        }
-        .whatsapp-sticky:hover .whatsapp-tooltip { opacity: 1; }
-
-        /* Animations */
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* Mobile Responsive */
-        @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; width: 100%; background: var(--accent); flex-direction: column; padding: 20px; box-shadow: var(--shadow); }
-            .nav-links.active { display: flex; }
-            .mobile-menu-btn { display: block; }
-            .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-            .hero-content h1 { font-size: 2rem; }
-            .header-actions { gap: 10px; }
-            .crisis-btn span { display: none; } /* Show only icon on very small screens */
-            .crisis-btn { padding: 8px 10px; }
+        .accent-button:hover {
+            background-color: #44513c;
+            transform: translateY(-3px);
         }
     </style>
 </head>
-<body>
+<body class="bg-[#f9fafb] text-gray-800 overflow-x-hidden">
 
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">Dra. <span>[Garcia]</span></a>
-            
-            <button class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
-            
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#services" data-i18n="nav_services">Servicios</a></li>
-                <li><a href="#about" data-i18n="nav_about">Sobre Mí</a></li>
-                <li><a href="#blog" data-i18n="nav_blog">Blog y Tips</a></li>
-                <li><a href="#contact" data-i18n="nav_contact">Contacto</a></li>
-            </ul>
-
-            <div class="header-actions">
-                <button class="lang-toggle" onclick="toggleLanguage()">ES / EN</button>
-                <a href="tel:8009112000" class="crisis-btn" title="Línea de la Vida: 800 911 2000">
-                    <i class="fas fa-heart-pulse"></i> <span data-i18n="crisis_btn">Ayuda en Crisis</span>
-               a>
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
+            <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-x-4 cursor-pointer">
+                <!-- Premium Logo inspired by the image -->
+                <div class="logo-container w-14 h-14">
+                    <svg width="58" height="58" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Elegant hummingbird inspired by provided image -->
+                        <path d="M95 45 Q65 85 55 125 Q85 110 125 135 Q145 95 110 55" fill="#5a6b4f"/>
+                        <path d="M95 55 Q70 90 62 118" fill="#d4c4a8" opacity="0.9"/>
+                        <path d="M105 58 Q135 88 142 120" fill="#d4c4a8" opacity="0.85"/>
+                        <!-- Wing flow lines -->
+                        <path d="M72 78 Q85 65 105 72" stroke="#d4c4a8" stroke-width="12" stroke-linecap="round" fill="none"/>
+                        <path d="M118 75 Q140 88 148 115" stroke="#d4c4a8" stroke-width="10" stroke-linecap="round" fill="none"/>
+                        <!-- Subtle C M integration in body -->
+                        <text x="98" y="105" font-family="serif" font-size="22" font-weight="700" fill="#d4c4a8" text-anchor="middle" opacity="0.9">C</text>
+                        <text x="105" y="118" font-family="serif" font-size="19" font-weight="700" fill="#d4c4a8" text-anchor="middle" transform="rotate(-12 105 118)">M</text>
+                        <!-- Beak -->
+                        <path d="M155 88 L175 92 L155 97" stroke="#5a6b4f" stroke-width="6" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div>
+                    <span class="heading-font text-3xl font-semibold tracking-tight text-gray-900">Cent</span>
+                    <span class="heading-font text-3xl font-semibold tracking-tight" style="color: #5a6b4f;">Motion</span>
+                </div>
             </div>
-        </div>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container hero-grid">
-            <div class="hero-content">
-                <h1 data-i18n="hero_title">Soluciones prácticas, no etiquetas. Bienestar emocional para tu familia en Tijuana.</h1>
-                <p data-i18n="hero_subtitle">Entendemos el ritmo de la frontera, las largas jornadas y la presión de las escuelas bilingües. Recupera la calma en casa con estrategias basadas en evidencia, en un espacio 100% confidencial y sin juicios.</p>
-                <a href="#contact" class="btn btn-primary" data-i18n="hero_cta">Agendar Primera Sesión</a>
+            <div class="hidden md:flex gap-x-10 text-sm font-medium text-gray-600">
+                <a href="#por-que" class="hover:text-[#5a6b4f] transition-colors">¿Por qué?</a>
+                <a href="#servicios" class="hover:text-[#5a6b4f] transition-colors">Servicios</a>
+                <a href="#guia" class="hover:text-[#5a6b4f] transition-colors">Tu Guía</a>
+                <a href="#historias" class="hover:text-[#5a6b4f] transition-colors">Historias</a>
+            </div>
+
+            <button onclick="showBooking()" 
+                    class="accent-button text-white px-8 py-4 rounded-3xl font-medium flex items-center gap-x-3 shadow-lg">
+                <i class="fa-solid fa-calendar"></i>
+                Agenda tu Exploración
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero-bg min-h-screen flex items-center pt-24">
+        <div class="max-w-screen-2xl mx-auto px-8 grid lg:grid-cols-12 gap-16 items-center">
+            <div class="lg:col-span-7">
+                <div class="inline-flex items-center gap-3 bg-[#d4c4a8]/15 text-[#5a6b4f] px-7 py-3 rounded-3xl text-sm font-medium mb-8">
+                    <span class="text-[#5a6b4f]">●</span>
+                    Tijuana, Baja California
+                </div>
                 
-                <div class="trust-badges">
-                    <div class="badge"><i class="fas fa-certificate"></i> <span data-i18n="badge_cdmx">Cédula Profesional CDMX</span></div>
-                    <div class="badge"><i class="fas fa-user-shield"></i> <span data-i18n="badge_confidential">100% Confidencial</span></div>
-                </div>
-            </div>
-            <div class="hero-image" role="img" aria-label="Familia diversa y cálida en un entorno seguro"></div>
-        </div
-    </section>
-
-    <!-- Age Segmentation -->
-    <section class="age-segment">
-        <div class="container">
-            <h2 data-i18n="age_title">Enfocados en la etapa de tu hijo/a</h2>
-            <div class="age-toggle">
-                <button class="age-btn active" onclick="setAge('6-12')" data-i18n="age_6_12">6 - 12 años</button>
-                <button class="age-btn" onclick="setAge('13-18')" data-i18n="age_13_18">13 - 18 años</button>
-            </div>
-
-            <!-- 6-12 Content -->
-            <div id="age-6-12" class="age-content active">
-                <p data-i18n="age_6_12_desc">En esta etapa, las emociones se manifiestan en la conducta. Te ayudamos a transformar los berrinches y la ansiedad escolar en herramientas de regulación.</p>
-                <div class="pain-points">
-                    <div class="pain-card">
-                        <h4 data-i18n="pain_1_title">Berrinches y Desobediencia</h4>
-                        <p data-i18n="pain_1_desc">Estrategias de disciplina positiva que funcionan incluso con horarios de maquiladora agotadores.</p>
-                    </div>
-                    <div class="pain-card">
-                        <h4 data-i18n="pain_2_title">Ansiedad Escolar</h4>
-                        <p data-i18n="pain_2_desc">Apoyo para el ajuste en escuelas bilingües y manejo del miedo a separarse de los padres.</p>
-                    </div>
-                    <div class="pain-card">
-                        <h4 data-i18n="pain_3_title">Dificultad para Dormir</h4>
-                        <p data-i18n="pain_3_desc">Rutinas nocturnas que promueven el descanso profundo y la seguridad emocional.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 13-18 Content -->
-            <div id="age-13-18" class="age-content">
-                <p data-i18n="age_13_18_desc">La adolescencia en la frontera trae retos únicos. Creamos un puente de comunicación para que tu hijo/a se sienta escuchado, no juzgado.</p>
-                <div class="pain-points">
-                    <div class="pain-card">
-                        <h4 data-i18n="pain_4_title">Aislamiento y Pantallas</h4>
-                        <p data-i18n="pain_4_desc">Manejo saludable de redes sociales y videojuegos sin generar guerras en casa.</p>
-                    </div>
-                    <div class="pain-card">
-                        <h4 data-i18n="pain_5_title">Presión Académica y Futuro</h4>
-                        <p data-i18n="pain_5_desc">Herramientas para manejar el estrés de las calificaciones y la incertidumbre del futuro.</p>
-                    </div>
-                    <div class="pain-card">
-                        <h4 data-i18n="pain_6_title">Cambios de Humor Extremos</h4>
-                        <p data-i18n="pain_6_desc">Diferenciar la rebeldía normal de señales que requieren apoyo profesional temprano.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services -->
-    <section id="services" class="services">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-i18n="services_title">Nuestros Servicios</h2>
-                <p data-i18n="services_subtitle">Un enfoque clínico, cálido y orientado a resultados tangibles para tu familia.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <i class="fas fa-users"></i>
-                    <h3 data-i18n="serv_1_title">Terapia Familiar</h3>
-                    <p data-i18n="serv_1_desc">Mejoramos la comunicación y resolvemos conflictos en un entorno seguro, respetando la dinámica única de las familias tijuanenses.</p>
-                    <div class="guarantee"><i class="fas fa-check-circle"></i> <span data-i18n="guarantee_1">Primera sesión: Psicoeducación, no diagnóstico.</span></div>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-child"></i>
-                    <h3 data-i18n="serv_2_title">Terapia Infantil</h3>
-                    <p data-i18n="serv_2_desc">Usamos juego y arte para que los niños expresen lo que no pueden decir con palabras, fortaleciendo su autoestima.</p>
-                    <div class="guarantee"><i class="fas fa-check-circle"></i> <span data-i18n="guarantee_2">Reportes discretos para la escuela (si se requiere).</span></div>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-user-graduate"></i>
-                    <h3 data-i18n="serv_3_title">Orientación a Padres</h3>
-                    <p data-i18n="serv_3_desc">Sesiones exclusivas para cuidadores. Aprende a establecer límites con amor y a manejar tu propio estrés parental.</p>
-                    <div class="guarantee"><i class="fas fa-check-circle"></i> <span data-i18n="guarantee_3">Horarios flexibles (incluyendo sábados).</span></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About -->
-    <section id="about" class="about">
-        <div class="container about-grid">
-            <div class="about-image">
-                [Foto Profesional Cálida de la Dra.]
-            </div>
-            <div class="about-text">
-                <h2 data-i18n="about_title">Más que una clínica, un aliado para tu familia</h2>
-                <p data-i18n="about_p1">Soy la Dra. [Garcia], psicóloga clínica con Cédula Profesional de la CDMX y años de experiencia atendiendo a familias en Tijuana. Sé lo que es criar aquí: el tráfico de la garita, las largas jornadas laborales y el miedo constante a "qué dirán los vecinos".</p>
-                <p data-i18n="about_p2">Mi misión es romper ese estigma. Aquí no hay juicios, solo ciencia, empatía y herramientas reales para que tu hijo/a duerma mejor, saque mejores calificaciones y tu casa vuelva a ser un lugar de paz.</p>
-                <a href="#contact" class="btn btn-primary" style="background: var(--accent); color: var(--primary);" data-i18n="about_cta">Conoce mi enfoque</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog/Tips -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="section-title">
-                <h2 data-i18n="blog_title">Recursos y Consejos</h2>
-                <p data-i18n="blog_subtitle">Pequeños cambios que puedes aplicar hoy mismo en casa.</p>
-            </div>
-            <div class="blog-grid">
-                <div class="blog-card">
-                    <div class="blog-img" style="background: linear-gradient(45deg, #E8A87C, #f0c4a8);"></div>
-                    <div class="blog-content">
-                        <h3 data-i18n="blog_1_title">Cómo hablar con tu hijo adolescente sin que se cierre</h3>
-                        <a href="#" data-i18n="blog_read">Leer más →</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-img" style="background: linear-gradient(45deg, #2B4A5F, #4a6f8a);"></div>
-                    <div class="blog-content">
-                        <h3 data-i18n="blog_2_title">Rutinas de sueño para niños con ansiedad</h3>
-                        <a href="#" data-i18n="blog_read">Leer más →</a>
-                    </div>
-                </div>
-                <div class="blog-card">
-                    <div class="blog-img" style="background: linear-gradient(45deg, #E8A87C, #2B4A5F);"></div>
-                    <div class="blog-content">
-                        <h3 data-i18n="blog_3_title">Señales de alerta: ¿Es tristeza o depresión?</h3>
-                        <a href="#" data-i18n="blog_read">Leer más →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact" class="contact">
-        <div class="container contact-grid">
-            <div class="contact-info">
-                <h2 data-i18n="contact_title">Da el primer paso hoy</h2>
-                <p style="margin-bottom: 30px;" data-i18n="contact_desc">Llena el formulario o escríbenos por WhatsApp. Respondemos en menos de 24 horas. Tu información está protegida.</p>
+                <h1 class="heading-font text-6xl lg:text-7xl leading-none font-semibold text-gray-900 tracking-tight">
+                    Entrena tu mente.<br>Conquista tu futuro.
+                </h1>
                 
-                <div class="info-item">
-                    <i class="fas fa-map-marker-alt"></i>
-                    <div>
-                        <strong>Ubicación</strong><br>
-                        Zona Río, Tijuana, BC. (Estacionamiento seguro disponible)
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-phone"></i>
-                    <div>
-                        <strong>Teléfono</strong><br>
-                        (664) XXX-XXXX
-                    </div>
-                </div>
-                <div class="info-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <strong>Email</strong><br>
-                        contacto@dra[tuapellido].com
-                    </div>
+                <p class="mt-8 text-2xl text-gray-600 max-w-2xl">
+                    Un espacio cálido y profesional para el desarrollo emocional de niños y adolescentes.
+                </p>
+                
+                <div class="mt-14 flex flex-wrap gap-6">
+                    <button onclick="scrollToMood()" 
+                            class="accent-button text-white px-12 py-8 rounded-3xl text-xl font-medium flex items-center gap-x-4 shadow-xl">
+                        ⚡ ¿Cómo está tu batería hoy?
+                    </button>
+                    <button onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})"
+                            class="px-10 py-8 border-2 border-gray-300 hover:border-[#5a6b4f] rounded-3xl text-lg font-medium transition-all">
+                        Explorar Programas
+                    </button>
                 </div>
             </div>
 
-            <form class="contact-form" onsubmit="event.preventDefault(); alert('Gracias. Nos pondremos en contacto contigo pronto.');">
-                <div class="form-group">
-                    <label data-i18n="form_name">Tu Nombre</label>
-                    <input type="text" required>
+            <div class="lg:col-span-5 flex justify-center">
+                <div class="relative">
+                    <div class="absolute -inset-12 bg-gradient-to-br from-[#d4c4a8]/40 to-transparent blur-3xl rounded-[5rem]"></div>
+                    <img src="https://picsum.photos/id/1015/720/820" alt="CentMotion Experience" 
+                         class="rounded-3xl shadow-2xl relative z-10 w-full max-w-lg object-cover">
                 </div>
-                <div class="form-group">
-                    <label data-i18n="form_phone">WhatsApp / Teléfono</label>
-                    <input type="tel" required>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="form_age">Edad de tu hijo/a</label>
-                    <select>
-                        <option>6 - 12 años</option>
-                        <option>13 - 18 años</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label data-i18n="form_message">¿En qué podemos ayudarte? (Breve descripción)</label>
-                    <textarea rows="4"></textarea>
-                </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%;" data-i18n="form_submit">Solicitar Información Confidencial</button>
-            </form>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
+    <!-- MOOD BATTERY -->
+    <div id="mood-section" class="max-w-2xl mx-auto px-6 -mt-12 relative z-20">
+        <div class="card rounded-3xl p-12 border border-gray-100">
+            <div class="flex justify-between items-center">
                 <div>
-                    <h4>YOMICENT</h4>
-                    <p data-i18n="footer_desc">Psicología clínica con calidez y evidencia científica para las familias de Tijuana.</p>
+                    <div class="uppercase tracking-widest text-xs text-[#5a6b4f] font-medium">Batería Mental</div>
+                    <div class="heading-font text-4xl font-semibold mt-3">¿Cómo te sientes hoy?</div>
                 </div>
-                <div>
-                    <h4 data-i18n="footer_links">Enlaces</h4>
-                    <a href="#services" data-i18n="nav_services">Servicios</a>
-                    <a href="#about" data-i18n="nav_about">Sobre Mí</a>
-                    <a href="#" data-i18n="footer_privacy">Aviso de Privacidad</a>
-                </div>
-                <div>
-                    <h4 data-i18n="footer_crisis">Líneas de Crisis 24/7</h4>
-                    <a href="tel:8009112000">Línea de la Vida: 800 911 2000</a>
-                    <a href="tel:[TJ Crisis Line]">SAPAM Tijuana: [Número Local]</a>
-                </div>
+                <div id="battery-value" class="heading-font text-8xl font-bold text-[#5a6b4f]">7</div>
             </div>
-            <div class="copyright">
-                &copy; 2024 Dra. [Nombre]. <span data-i18n="footer_rights">Todos los derechos reservados.</span>
+            <input type="range" id="mood-slider" min="1" max="10" value="7" 
+                   class="w-full mt-10 accent-[#5a6b4f]" oninput="updateBattery(this.value)">
+            <div id="battery-feedback" class="mt-8 text-center text-xl text-[#5a6b4f] font-medium">¡Estás en un gran momento!</div>
+        </div>
+    </div>
+
+    <!-- WHY -->
+    <section id="por-que" class="max-w-screen-2xl mx-auto px-8 py-32 bg-white">
+        <div class="grid lg:grid-cols-12 gap-20 items-center">
+            <div class="lg:col-span-5">
+                <span class="px-8 py-4 bg-[#d4c4a8]/10 text-[#5a6b4f] rounded-3xl text-sm font-medium">FILOSOFÍA CENTMOTION</span>
+                <h2 class="heading-font text-6xl mt-10 leading-none text-gray-900">
+                    Como vas al gym por tu cuerpo,<br>entrena tu mente aquí.
+                </h2>
+            </div>
+            <div class="lg:col-span-7 space-y-10">
+                <div class="card p-10 rounded-3xl flex gap-8">
+                    <div class="text-6xl">🏋️</div>
+                    <div>
+                        <div class="text-2xl font-semibold">Entrenamiento consistente</div>
+                        <p class="text-gray-600 mt-4">Sesiones semanales que construyen resiliencia emocional con calidez.</p>
+                    </div>
+                </div>
+                <div class="card p-10 rounded-3xl flex gap-8">
+                    <div class="text-6xl">🌱</div>
+                    <div>
+                        <div class="text-2xl font-semibold">Crecimiento juguetón</div>
+                        <p class="text-gray-600 mt-4">Herramientas adaptadas a cada edad en un ambiente seguro y alegre.</p>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+    </section>
 
-    <!-- Sticky WhatsApp -->
-    <a href="https://wa.me/521664XXXXXXX?text=Hola%20Dra.%20Quiero%20ayudar%20a%20mi%20hijo/a%20con%20..." class="whatsapp-sticky" target="_blank" aria-label="Chat en WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <div class="whatsapp-tooltip" data-i18n="wa_tooltip">¡Hola! ¿En qué podemos ayudarte?</div>
-    </a>
+    <!-- SERVICES -->
+    <section id="servicios" class="py-28 bg-gray-50">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <h2 class="heading-font text-center text-5xl mb-16 text-gray-900">Elige tu flujo</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card p-10 rounded-3xl">
+                    <div class="text-6xl mb-8 text-[#5a6b4f]">🎯</div>
+                    <h3 class="heading-font text-3xl font-semibold">Focus Flow</h3>
+                    <p class="mt-6 text-gray-600">Mejora tu concentración y reduce distracciones.</p>
+                </div>
+                <div class="card p-10 rounded-3xl border-2 border-[#d4c4a8]">
+                    <div class="text-6xl mb-8 text-[#5a6b4f]">🌊</div>
+                    <h3 class="heading-font text-3xl font-semibold">Emotion Control</h3>
+                    <p class="mt-6 text-gray-600">Domina tus emociones y transforma ansiedad en fuerza.</p>
+                    <span class="mt-8 inline-block px-6 py-2 bg-[#d4c4a8]/20 text-[#5a6b4f] text-sm rounded-3xl">Más Popular</span>
+                </div>
+                <div class="card p-10 rounded-3xl">
+                    <div class="text-6xl mb-8 text-[#5a6b4f]">👥</div>
+                    <h3 class="heading-font text-3xl font-semibold">Social Power</h3>
+                    <p class="mt-6 text-gray-600">Construye confianza y habilidades sociales positivas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <!-- JavaScript -->
+    <!-- TU GUÍA -->
+    <section id="guia" class="py-32 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid lg:grid-cols-12 gap-16 items-center">
+                <div class="lg:col-span-5">
+                    <img src="https://picsum.photos/id/1015/800/920" alt="Jhomarami Garcia" class="rounded-3xl shadow-2xl">
+                </div>
+                <div class="lg:col-span-7">
+                    <span class="uppercase tracking-widest text-[#5a6b4f]">Tu Coach</span>
+                    <h2 class="heading-font text-6xl mt-4 text-gray-900">Jhomarami Garcia</h2>
+                    <p class="text-xl text-[#5a6b4f]">Psicóloga Infantil y Adolescente • Fundadora</p>
+                    
+                    <div class="mt-12 text-lg text-gray-600 max-w-xl">
+                        Con dedicación y experiencia, guío a niños y adolescentes en Tijuana hacia un mayor bienestar emocional en un espacio seguro y lleno de posibilidades.
+                    </div>
+                    
+                    <!-- Elegant Business Card -->
+                    <div class="mt-16 card p-10 rounded-3xl max-w-md">
+                        <div class="flex items-center gap-x-5">
+                            <div class="w-14 h-14 bg-[#5a6b4f] rounded-2xl flex items-center justify-center text-3xl text-white">🧠</div>
+                            <div class="heading-font text-3xl">CentMotion</div>
+                        </div>
+                        <div class="mt-10 text-2xl font-medium">Jhomarami Garcia</div>
+                        <div class="text-gray-600">Psicóloga Especialista</div>
+                        
+                        <div class="mt-12 flex justify-center">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://calendly.com/centmotion/jhomarami&color=5a6b4f" alt="QR Code" class="rounded-2xl shadow">
+                        </div>
+                        <p class="text-center text-[#5a6b4f] mt-5 text-sm">Escanea para agendar tu primera sesión</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-32 bg-[#d4c4a8]/10 text-center">
+        <div class="max-w-xl mx-auto px-6">
+            <h2 class="heading-font text-6xl text-gray-900">Comienza hoy tu camino hacia una mente más fuerte</h2>
+            <button onclick="showBooking()" 
+                    class="accent-button mt-12 px-16 py-8 text-2xl font-medium text-white rounded-3xl shadow-xl">
+                Agenda tu Sesión Gratuita
+            </button>
+        </div>
+    </section>
+
     <script>
-        // Language Data
-        const translations = {
-            es: {
-                nav_services: "Servicios", nav_about: "Sobre Mí", nav_blog: "Blog y Tips", nav_contact: "Contacto",
-                crisis_btn: "Ayuda en Crisis",
-                hero_title: "Soluciones prácticas, no etiquetas. Bienestar emocional para tu familia en Tijuana.",
-                hero_subtitle: "Entendemos el ritmo de la frontera, las largas jornadas y la presión de las escuelas bilingües. Recupera la calma en casa con estrategias basadas en evidencia, en un espacio 100% confidencial y sin juicios.",
-                hero_cta: "Agendar Primera Sesión",
-                badge_cdmx: "Cédula Profesional CDMX", badge_confidential: "100% Confidencial",
-                age_title: "Enfocados en la etapa de tu hijo/a", age_6_12: "6 - 12 años", age_13_18: "13 - 18 años",
-                age_6_12_desc: "En esta etapa, las emociones se manifiestan en la conducta. Te ayudamos a transformar los berrinches y la ansiedad escolar en herramientas de regulación.",
-                pain_1_title: "Berrinches y Desobediencia", pain_1_desc: "Estrategias de disciplina positiva que funcionan incluso con horarios de maquiladora agotadores.",
-                pain_2_title: "Ansiedad Escolar", pain_2_desc: "Apoyo para el ajuste en escuelas bilingües y manejo del miedo a separarse de los padres.",
-                pain_3_title: "Dificultad para Dormir", pain_3_desc: "Rutinas nocturnas que promueven el descanso profundo y la seguridad emocional.",
-                age_13_18_desc: "La adolescencia en la frontera trae retos únicos. Creamos un puente de comunicación para que tu hijo/a se sienta escuchado, no juzgado.",
-                pain_4_title: "Aislamiento y Pantallas", pain_4_desc: "Manejo saludable de redes sociales y videojuegos sin generar guerras en casa.",
-                pain_5_title: "Presión Académica y Futuro", pain_5_desc: "Herramientas para manejar el estrés de las calificaciones y la incertidumbre del futuro.",
-                pain_6_title: "Cambios de Humor Extremos", pain_6_desc: "Diferenciar la rebeldía normal de señales que requieren apoyo profesional temprano.",
-                services_title: "Nuestros Servicios", services_subtitle: "Un enfoque clínico, cálido y orientado a resultados tangibles para tu familia.",
-                serv_1_title: "Terapia Familiar", serv_1_desc: "Mejoramos la comunicación y resolvemos conflictos en un entorno seguro, respetando la dinámica única de las familias tijuanenses.",
-                guarantee_1: "Primera sesión: Psicoeducación, no diagnóstico.",
-                serv_2_title: "Terapia Infantil", serv_2_desc: "Usamos juego y arte para que los niños expresen lo que no pueden decir con palabras, fortaleciendo su autoestima.",
-                guarantee_2: "Reportes discretos para la escuela (si se requiere).",
-                serv_3_title: "Orientación a Padres", serv_3_desc: "Sesiones exclusivas para cuidadores. Aprende a establecer límites con amor y a manejar tu propio estrés parental.",
-                guarantee_3: "Horarios flexibles (incluyendo sábados).",
-                about_title: "Más que una clínica, un aliado para tu familia",
-                about_p1: "Soy la Dra. [Nombre], psicóloga clínica con Cédula Profesional de la CDMX y años de experiencia atendiendo a familias en Tijuana. Sé lo que es criar aquí: el tráfico de la garita, las largas jornadas laborales y el miedo constante a 'qué dirán los vecinos'.",
-                about_p2: "Mi misión es romper ese estigma. Aquí no hay juicios, solo ciencia, empatía y herramientas reales para que tu hijo/a duerma mejor, saque mejores calificaciones y tu casa vuelva a ser un lugar de paz.",
-                about_cta: "Conoce mi enfoque",
-                blog_title: "Recursos y Consejos", blog_subtitle: "Pequeños cambios que puedes aplicar hoy mismo en casa.",
-                blog_1_title: "Cómo hablar con tu hijo adolescente sin que se cierre", blog_2_title: "Rutinas de sueño para niños con ansiedad", blog_3_title: "Señales de alerta: ¿Es tristeza o depresión?", blog_read: "Leer más →",
-                contact_title: "Da el primer paso hoy", contact_desc: "Llena el formulario o escríbenos por WhatsApp. Respondemos en menos de 24 horas. Tu información está protegida.",
-                form_name: "Tu Nombre", form_phone: "WhatsApp / Teléfono", form_age: "Edad de tu hijo/a", form_message: "¿En qué podemos ayudarte? (Breve descripción)", form_submit: "Solicitar Información Confidencial",
-                footer_desc: "Psicología clínica con calidez y evidencia científica para las familias de Tijuana.",
-                footer_links: "Enlaces", footer_privacy: "Aviso de Privacidad", footer_crisis: "Líneas de Crisis 24/7", footer_rights: "Todos los derechos reservados.",
-                wa_tooltip: "¡Hola! ¿En qué podemos ayudarte?"
-            },
-            en: {
-                nav_services: "Services", nav_about: "About", nav_blog: "Blog & Tips", nav_contact: "Contact",
-                crisis_btn: "Crisis Help",
-                hero_title: "Practical solutions, not labels. Emotional wellness for your family in Tijuana.",
-                hero_subtitle: "We understand the pace of the border, long work shifts, and the pressure of bilingual schools. Restore calm at home with evidence-based strategies in a 100% confidential, non-judgmental space.",
-                hero_cta: "Schedule First Session",
-                badge_cdmx: "CDMX Professional License", badge_confidential: "100% Confidential",
-                age_title: "Focused on your child's stage", age_6_12: "6 - 12 years", age_13_18: "13 - 18 years",
-                age_6_12_desc: "At this stage, emotions manifest in behavior. We help you transform tantrums and school anxiety into regulation tools.",
-                pain_1_title: "Tantrums & Defiance", pain_1_desc: "Positive discipline strategies that work even with exhausting maquiladora schedules.",
-                pain_2_title: "School Anxiety", pain_2_desc: "Support for adjustment in bilingual schools and managing separation anxiety.",
-                pain_3_title: "Sleep Difficulties", pain_3_desc: "Nighttime routines that promote deep rest and emotional security.",
-                age_13_18_desc: "Adolescence at the border brings unique challenges. We build a communication bridge so your teen feels heard, not judged.",
-                pain_4_title: "Isolation & Screens", pain_4_desc: "Healthy management of social media and video games without starting wars at home.",
-                pain_5_title: "Academic Pressure & Future", pain_5_desc: "Tools to handle grade stress and uncertainty about the future.",
-                pain_6_title: "Extreme Mood Swings", pain_6_desc: "Differentiating normal rebellion from early signs requiring professional support.",
-                services_title: "Our Services", services_subtitle: "A clinical, warm, and results-oriented approach for your family.",
-                serv_1_title: "Family Therapy", serv_1_desc: "We improve communication and resolve conflicts in a safe environment, respecting the unique dynamics of Tijuana families.",
-                guarantee_1: "First session: Psychoeducation, not diagnosis.",
-                serv_2_title: "Child Therapy", serv_2_desc: "We use play and art so children can express what they cannot say with words, strengthening their self-esteem.",
-                guarantee_2: "Discreet reports for school (if required).",
-                serv_3_title: "Parental Guidance", serv_3_desc: "Exclusive sessions for caregivers. Learn to set loving boundaries and manage your own parental stress.",
-                guarantee_3: "Flexible hours (including Saturdays).",
-                about_title: "More than a clinic, an ally for your family",
-                about_p1: "I am Dr. [Name], a clinical psychologist with a CDMX Professional License and years of experience working with families in Tijuana. I know what it's like to raise kids here: the border crossing traffic, long work hours, and the constant fear of 'what will the neighbors say'.",
-                about_p2: "My mission is to break that stigma. There is no judgment here, only science, empathy, and real tools so your child sleeps better, gets better grades, and your home becomes a place of peace again.",
-                about_cta: "Learn about my approach",
-                blog_title: "Resources & Tips", blog_subtitle: "Small changes you can apply at home today.",
-                blog_1_title: "How to talk to your teen without them shutting down", blog_2_title: "Sleep routines for anxious children", blog_3_title: "Warning signs: Is it sadness or depression?", blog_read: "Read more →",
-                contact_title: "Take the first step today", contact_desc: "Fill out the form or message us on WhatsApp. We respond in under 24 hours. Your information is protected.",
-                form_name: "Your Name", form_phone: "WhatsApp / Phone", form_age: "Child's Age", form_message: "How can we help? (Brief description)", form_submit: "Request Confidential Information",
-                footer_desc: "Clinical psychology with warmth and scientific evidence for Tijuana families.",
-                footer_links: "Links", footer_privacy: "Privacy Policy", footer_crisis: "24/7 Crisis Lines", footer_rights: "All rights reserved.",
-                wa_tooltip: "Hi! How can we help you?"
-            }
-        };
-
-        let currentLang = 'es';
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'es' ? 'en' : 'es';
-            document.querySelectorAll('[data-i18n]').forEach(element => {
-                const key = element.getAttribute('data-i18n');
-                if (translations[currentLang][key]) {
-                    element.textContent = translations[currentLang][key];
-                }
-            });
-            document.documentElement.lang = currentLang;
+        function updateBattery(val) {
+            document.getElementById('battery-value').textContent = val;
+            const fb = document.getElementById('battery-feedback');
+            if (val >= 8) fb.textContent = "¡Modo superpoder activado! 🌟";
+            else if (val >= 5) fb.textContent = "¡Buen nivel! Sigamos creciendo ⚡";
+            else fb.textContent = "Vamos a recargar esa batería 💛";
         }
 
-        function setAge(ageGroup) {
-            // Update buttons
-            document.querySelectorAll('.age-btn').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Update content
-            document.querySelectorAll('.age-content').forEach(content => content.classList.remove('active'));
-            document.getElementById(`age-${ageGroup}`).classList.add('active');
+        function showBooking() {
+            window.open('https://calendly.com/centmotion/jhomarami', '_blank');
         }
 
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
+        function scrollToMood() {
+            document.getElementById('mood-section').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Smooth scroll for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                // Close mobile menu if open
-                document.getElementById('navLinks').classList.remove('active');
-            });
-        });
+        window.onload = () => updateBattery(7);
     </script>
 </body>
 </html>
