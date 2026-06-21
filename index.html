@@ -1,271 +1,526 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CentMotion • Mental Fitness para Niños y Adolescentes</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>CentMotion • Mental Fitness Elite</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --olive: #5a6b4f;
+            --gold: #c9a96e;
+            --olive: #4a5c3f;
             --sand: #d4c4a8;
+            --cream: #fbf8f0;
+            --charcoal: #1e1e1e;
         }
-        
         body {
-            font-family: 'Inter', system_ui, sans-serif;
+            font-family: 'Inter', sans-serif;
+            background: var(--cream);
+            color: var(--charcoal);
+            overflow-x: hidden;
         }
-        .heading-font {
-            font-family: 'Playfair Display', serif;
+        .heading-font { font-family: 'Playfair Display', serif; }
+        .gold-text { color: var(--gold); }
+        .olive-bg { background: var(--olive); }
+        .sand-bg { background: var(--sand); }
+        .cream-bg { background: var(--cream); }
+
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+        .glass-dark {
+            background: rgba(30, 30, 30, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .hero-bg {
-            background: linear-gradient(to bottom, #f9fafb, #f1f5f9);
+        /* Premium Button */
+        .btn-premium {
+            background: linear-gradient(135deg, var(--olive), #2d3a26);
+            color: white;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 20px 40px -12px rgba(74, 92, 63, 0.4);
+            position: relative;
+            overflow: hidden;
         }
-
-        .logo-container {
-            filter: drop-shadow(0 10px 25px rgba(90, 107, 79, 0.3));
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--gold), #b8954e);
+            opacity: 0;
+            transition: opacity 0.5s ease;
         }
+        .btn-premium:hover::before { opacity: 1; }
+        .btn-premium:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 30px 60px -12px rgba(74, 92, 63, 0.6); }
+        .btn-premium span { position: relative; z-index: 2; }
 
-        .card {
+        /* Gold Accent */
+        .gold-border { border-color: var(--gold); }
+        .gold-glow { box-shadow: 0 0 60px rgba(201, 169, 110, 0.15); }
+
+        /* Cards */
+        .card-premium {
             background: white;
-            box-shadow: 0 10px 30px -8px rgb(0 0 0 / 0.08);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 32px;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 20px 60px -20px rgba(0,0,0,0.08);
         }
-        
-        .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.12);
+        .card-premium:hover {
+            transform: translateY(-16px);
+            box-shadow: 0 40px 80px -20px rgba(74, 92, 63, 0.2);
         }
 
-        .accent-button {
-            background-color: var(--olive);
-            transition: all 0.4s ease;
+        /* Hero Gradient */
+        .hero-radial {
+            background: radial-gradient(ellipse at 80% 20%, rgba(201,169,110,0.08), transparent 60%),
+                        radial-gradient(ellipse at 20% 80%, rgba(74,92,63,0.05), transparent 50%),
+                        var(--cream);
         }
-        
-        .accent-button:hover {
-            background-color: #44513c;
-            transform: translateY(-3px);
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(2deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
         }
+        .float-anim { animation: float 8s ease-in-out infinite; }
+
+        @keyframes pulse-gold {
+            0%, 100% { box-shadow: 0 0 20px rgba(201,169,110,0.2); }
+            50% { box-shadow: 0 0 60px rgba(201,169,110,0.4); }
+        }
+        .pulse-gold { animation: pulse-gold 3s ease-in-out infinite; }
+
+        /* Custom Scroll */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--cream); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 20px; }
+
+        /* Stat Counter */
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--olive), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Testimonial Carousel Dots */
+        .dot-active { background: var(--gold); width: 40px; }
+        .dot-inactive { background: #d4d4d4; width: 12px; }
+        .dot { height: 6px; border-radius: 20px; transition: all 0.5s ease; cursor: pointer; }
     </style>
 </head>
-<body class="bg-[#f9fafb] text-gray-800 overflow-x-hidden">
+<body>
 
-    <!-- NAV -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
-        <div class="max-w-screen-2xl mx-auto px-8 py-6 flex items-center justify-between">
-            <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-x-4 cursor-pointer">
-                <!-- Premium Logo inspired by the image -->
-                <div class="logo-container w-14 h-14">
-                    <svg width="58" height="58" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <!-- Elegant hummingbird inspired by provided image -->
-                        <path d="M95 45 Q65 85 55 125 Q85 110 125 135 Q145 95 110 55" fill="#5a6b4f"/>
-                        <path d="M95 55 Q70 90 62 118" fill="#d4c4a8" opacity="0.9"/>
-                        <path d="M105 58 Q135 88 142 120" fill="#d4c4a8" opacity="0.85"/>
-                        <!-- Wing flow lines -->
-                        <path d="M72 78 Q85 65 105 72" stroke="#d4c4a8" stroke-width="12" stroke-linecap="round" fill="none"/>
-                        <path d="M118 75 Q140 88 148 115" stroke="#d4c4a8" stroke-width="10" stroke-linecap="round" fill="none"/>
-                        <!-- Subtle C M integration in body -->
-                        <text x="98" y="105" font-family="serif" font-size="22" font-weight="700" fill="#d4c4a8" text-anchor="middle" opacity="0.9">C</text>
-                        <text x="105" y="118" font-family="serif" font-size="19" font-weight="700" fill="#d4c4a8" text-anchor="middle" transform="rotate(-12 105 118)">M</text>
-                        <!-- Beak -->
-                        <path d="M155 88 L175 92 L155 97" stroke="#5a6b4f" stroke-width="6" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div>
-                    <span class="heading-font text-3xl font-semibold tracking-tight text-gray-900">Cent</span>
-                    <span class="heading-font text-3xl font-semibold tracking-tight" style="color: #5a6b4f;">Motion</span>
-                </div>
+<!-- ========== NAVIGATION ========== -->
+<nav class="fixed top-0 left-0 right-0 z-[999] glass-dark px-6 md:px-12 py-4">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <!-- Logo -->
+        <div onclick="window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-3 cursor-pointer group">
+            <div class="w-12 h-12 relative">
+                <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-xl">
+                    <path d="M95 45 Q65 85 55 125 Q85 110 125 135 Q145 95 110 55" fill="#4a5c3f"/>
+                    <path d="M95 55 Q70 90 62 118" fill="#c9a96e" opacity="0.9"/>
+                    <path d="M105 58 Q135 88 142 120" fill="#c9a96e" opacity="0.85"/>
+                    <path d="M72 78 Q85 65 105 72" stroke="#c9a96e" stroke-width="12" stroke-linecap="round" fill="none"/>
+                    <path d="M118 75 Q140 88 148 115" stroke="#c9a96e" stroke-width="10" stroke-linecap="round" fill="none"/>
+                    <text x="98" y="105" font-family="serif" font-size="22" font-weight="700" fill="#c9a96e" text-anchor="middle" opacity="0.9">C</text>
+                    <text x="105" y="118" font-family="serif" font-size="19" font-weight="700" fill="#c9a96e" text-anchor="middle" transform="rotate(-12 105 118)">M</text>
+                    <path d="M155 88 L175 92 L155 97" stroke="#4a5c3f" stroke-width="6" stroke-linejoin="round"/>
+                </svg>
             </div>
-
-            <div class="hidden md:flex gap-x-10 text-sm font-medium text-gray-600">
-                <a href="#por-que" class="hover:text-[#5a6b4f] transition-colors">¿Por qué?</a>
-                <a href="#servicios" class="hover:text-[#5a6b4f] transition-colors">Servicios</a>
-                <a href="#guia" class="hover:text-[#5a6b4f] transition-colors">Tu Guía</a>
-                <a href="#historias" class="hover:text-[#5a6b4f] transition-colors">Historias</a>
-            </div>
-
-            <button onclick="showBooking()" 
-                    class="accent-button text-white px-8 py-4 rounded-3xl font-medium flex items-center gap-x-3 shadow-lg">
-                <i class="fa-solid fa-calendar"></i>
-                Agenda tu Exploración
-            </button>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero-bg min-h-screen flex items-center pt-24">
-        <div class="max-w-screen-2xl mx-auto px-8 grid lg:grid-cols-12 gap-16 items-center">
-            <div class="lg:col-span-7">
-                <div class="inline-flex items-center gap-3 bg-[#d4c4a8]/15 text-[#5a6b4f] px-7 py-3 rounded-3xl text-sm font-medium mb-8">
-                    <span class="text-[#5a6b4f]">●</span>
-                    Tijuana, Baja California
-                </div>
-                
-                <h1 class="heading-font text-6xl lg:text-7xl leading-none font-semibold text-gray-900 tracking-tight">
-                    Entrena tu mente.<br>Conquista tu futuro.
-                </h1>
-                
-                <p class="mt-8 text-2xl text-gray-600 max-w-2xl">
-                    Un espacio cálido y profesional para el desarrollo emocional de niños y adolescentes.
-                </p>
-                
-                <div class="mt-14 flex flex-wrap gap-6">
-                    <button onclick="scrollToMood()" 
-                            class="accent-button text-white px-12 py-8 rounded-3xl text-xl font-medium flex items-center gap-x-4 shadow-xl">
-                        ⚡ ¿Cómo está tu batería hoy?
-                    </button>
-                    <button onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})"
-                            class="px-10 py-8 border-2 border-gray-300 hover:border-[#5a6b4f] rounded-3xl text-lg font-medium transition-all">
-                        Explorar Programas
-                    </button>
-                </div>
-            </div>
-
-            <div class="lg:col-span-5 flex justify-center">
-                <div class="relative">
-                    <div class="absolute -inset-12 bg-gradient-to-br from-[#d4c4a8]/40 to-transparent blur-3xl rounded-[5rem]"></div>
-                    <img src="https://picsum.photos/id/1015/720/820" alt="CentMotion Experience" 
-                         class="rounded-3xl shadow-2xl relative z-10 w-full max-w-lg object-cover">
-                </div>
+            <div>
+                <span class="heading-font text-3xl font-bold tracking-tight text-white">Cent</span>
+                <span class="heading-font text-3xl font-bold tracking-tight gold-text">Motion</span>
             </div>
         </div>
-    </section>
 
-    <!-- MOOD BATTERY -->
-    <div id="mood-section" class="max-w-2xl mx-auto px-6 -mt-12 relative z-20">
-        <div class="card rounded-3xl p-12 border border-gray-100">
-            <div class="flex justify-between items-center">
-                <div>
-                    <div class="uppercase tracking-widest text-xs text-[#5a6b4f] font-medium">Batería Mental</div>
-                    <div class="heading-font text-4xl font-semibold mt-3">¿Cómo te sientes hoy?</div>
-                </div>
-                <div id="battery-value" class="heading-font text-8xl font-bold text-[#5a6b4f]">7</div>
+        <!-- Desktop Menu -->
+        <div class="hidden lg:flex items-center gap-10 text-white/80 font-medium">
+            <a href="#vision" class="hover:text-gold transition text-sm uppercase tracking-wider">Visión</a>
+            <a href="#programs" class="hover:text-gold transition text-sm uppercase tracking-wider">Programas</a>
+            <a href="#coach" class="hover:text-gold transition text-sm uppercase tracking-wider">Coach</a>
+            <a href="#results" class="hover:text-gold transition text-sm uppercase tracking-wider">Resultados</a>
+        </div>
+
+        <!-- CTA -->
+        <button onclick="showBooking()" class="btn-premium px-8 py-3.5 rounded-full text-sm font-semibold tracking-wide flex items-center gap-3">
+            <i class="fa-regular fa-calendar-check"></i>
+            <span>Empieza Ahora</span>
+        </button>
+    </div>
+</nav>
+
+<!-- ========== HERO ========== -->
+<section class="hero-radial min-h-screen flex items-center pt-28 relative overflow-hidden">
+    <!-- Decorative Orbs -->
+    <div class="absolute top-20 right-10 w-72 h-72 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-20 left-10 w-96 h-96 bg-olive/5 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-center relative z-10">
+        <!-- Left -->
+        <div>
+            <div class="inline-flex items-center gap-3 bg-white/80 backdrop-blur px-6 py-3 rounded-full text-sm font-medium text-olive shadow-lg mb-8">
+                <span class="w-2 h-2 bg-gold rounded-full animate-pulse"></span>
+                Tijuana • Clase Mundial
             </div>
-            <input type="range" id="mood-slider" min="1" max="10" value="7" 
-                   class="w-full mt-10 accent-[#5a6b4f]" oninput="updateBattery(this.value)">
-            <div id="battery-feedback" class="mt-8 text-center text-xl text-[#5a6b4f] font-medium">¡Estás en un gran momento!</div>
+            
+            <h1 class="heading-font text-6xl md:text-7xl lg:text-8xl leading-[1.05] font-black text-charcoal">
+                <span class="block">Entrena tu</span>
+                <span class="gold-text">Mente</span>
+                <span class="block">Conquista el</span>
+                <span class="block relative">
+                    Futuro
+                    <span class="absolute -bottom-2 left-0 w-32 h-1.5 bg-gold rounded-full"></span>
+                </span>
+            </h1>
+            
+            <p class="mt-8 text-xl text-gray-600 max-w-lg leading-relaxed">
+                Un ecosistema de alto rendimiento emocional para niños y adolescentes. 
+                Donde la ciencia cognitiva se encuentra con la calidez humana.
+            </p>
+            
+            <div class="mt-12 flex flex-wrap gap-5">
+                <button onclick="showBooking()" class="btn-premium px-10 py-5 rounded-2xl text-lg font-semibold flex items-center gap-4">
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Reserva tu Sesión</span>
+                </button>
+                <button onclick="document.getElementById('programs').scrollIntoView({behavior:'smooth'})" 
+                        class="px-10 py-5 rounded-2xl text-lg font-semibold border-2 border-gray-300 hover:border-gold transition-all duration-300 hover:shadow-xl">
+                    Explorar Programas
+                </button>
+            </div>
+
+            <!-- Trust Indicators -->
+            <div class="mt-16 flex items-center gap-12">
+                <div><span class="stat-number">98%</span><span class="text-sm text-gray-500 block">Satisfacción</span></div>
+                <div><span class="stat-number">500+</span><span class="text-sm text-gray-500 block">Familias</span></div>
+                <div><span class="stat-number">12+</span><span class="text-sm text-gray-500 block">Años de Experiencia</span></div>
+            </div>
+        </div>
+
+        <!-- Right - Hero Image -->
+        <div class="relative flex justify-center">
+            <div class="absolute -inset-8 bg-gradient-to-tr from-gold/20 to-olive/10 rounded-[40px] blur-2xl"></div>
+            <div class="relative float-anim">
+                <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&h=900&fit=crop&crop=center" 
+                     alt="CentMotion Coach" 
+                     class="rounded-[32px] shadow-2xl w-full max-w-md lg:max-w-lg object-cover border-4 border-white/20" />
+                <!-- Floating Badge -->
+                <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-2xl p-5 flex items-center gap-4 pulse-gold">
+                    <div class="w-14 h-14 rounded-full olive-bg flex items-center justify-center text-3xl">🧠</div>
+                    <div>
+                        <div class="font-bold text-sm">Mental Fitness</div>
+                        <div class="text-xs text-gray-500">Certificado Internacional</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+</section>
 
-    <!-- WHY -->
-    <section id="por-que" class="max-w-screen-2xl mx-auto px-8 py-32 bg-white">
-        <div class="grid lg:grid-cols-12 gap-20 items-center">
-            <div class="lg:col-span-5">
-                <span class="px-8 py-4 bg-[#d4c4a8]/10 text-[#5a6b4f] rounded-3xl text-sm font-medium">FILOSOFÍA CENTMOTION</span>
-                <h2 class="heading-font text-6xl mt-10 leading-none text-gray-900">
-                    Como vas al gym por tu cuerpo,<br>entrena tu mente aquí.
+<!-- ========== MOOD BATTERY ========== -->
+<section class="max-w-4xl mx-auto px-6 -mt-16 relative z-20">
+    <div class="card-premium p-10 md:p-14 gold-glow border border-white/30">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+            <div>
+                <div class="flex items-center gap-3 text-sm font-medium text-olive/80 uppercase tracking-widest">
+                    <i class="fa-solid fa-bolt gold-text"></i>
+                    <span>Check-in Diario</span>
+                </div>
+                <h3 class="heading-font text-4xl font-bold mt-2">¿Cómo está tu <span class="gold-text">energía</span> hoy?</h3>
+            </div>
+            <div class="flex items-center gap-6">
+                <span id="battery-value" class="heading-font text-7xl font-black gold-text">7</span>
+                <span class="text-sm text-gray-400">/10</span>
+            </div>
+        </div>
+        <input type="range" id="mood-slider" min="1" max="10" value="7" 
+               class="w-full mt-8 accent-gold h-2 rounded-full appearance-none cursor-pointer" 
+               style="background: linear-gradient(to right, var(--gold) 0%, var(--gold) 70%, #e5e5e5 70%, #e5e5e5 100%);"
+               oninput="updateBattery(this.value)" />
+        <div id="battery-feedback" class="mt-6 text-center text-xl font-medium text-olive">
+            🌟 ¡En tu mejor momento! Sigue así.
+        </div>
+    </div>
+</section>
+
+<!-- ========== VISION ========== -->
+<section id="vision" class="py-32 px-6">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+                <span class="inline-block px-6 py-2 bg-gold/10 gold-text rounded-full text-sm font-semibold uppercase tracking-wider">Nuestra Filosofía</span>
+                <h2 class="heading-font text-5xl md:text-6xl font-bold mt-6 leading-[1.1]">
+                    Como el <span class="gold-text">gym</span> para tu cuerpo, 
+                    <span class="block">pero para tu <span class="gold-text">mente</span></span>
                 </h2>
+                <p class="mt-8 text-lg text-gray-600 leading-relaxed">
+                    En CentMotion creemos que la fortaleza mental se construye con 
+                    <span class="font-semibold text-charcoal">disciplina, cariño y consistencia</span>. 
+                    No es magia, es entrenamiento emocional de élite.
+                </p>
+                <div class="mt-10 space-y-6">
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl olive-bg flex items-center justify-center text-white text-xl flex-shrink-0">🏋️</div>
+                        <div><span class="font-bold text-lg">Entrenamiento Semanal</span><p class="text-gray-500">Sesiones estructuradas que construyen resiliencia.</p></div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl olive-bg flex items-center justify-center text-white text-xl flex-shrink-0">🌱</div>
+                        <div><span class="font-bold text-lg">Crecimiento Lúdico</span><p class="text-gray-500">Herramientas adaptadas a cada edad con alegría y seguridad.</p></div>
+                    </div>
+                    <div class="flex items-start gap-5">
+                        <div class="w-12 h-12 rounded-xl olive-bg flex items-center justify-center text-white text-xl flex-shrink-0">✨</div>
+                        <div><span class="font-bold text-lg">Resultados Medibles</span><p class="text-gray-500">Seguimiento profesional del progreso emocional.</p></div>
+                    </div>
+                </div>
             </div>
-            <div class="lg:col-span-7 space-y-10">
-                <div class="card p-10 rounded-3xl flex gap-8">
-                    <div class="text-6xl">🏋️</div>
+            <div class="relative">
+                <div class="absolute -inset-6 bg-gold/10 rounded-[40px] blur-2xl"></div>
+                <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?w=800&h=900&fit=crop&crop=center" 
+                     alt="Mental Fitness" 
+                     class="rounded-[32px] shadow-2xl relative z-10 w-full object-cover" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== PROGRAMS ========== -->
+<section id="programs" class="py-32 px-6 olive-bg relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+        <div class="text-center text-white">
+            <span class="inline-block px-6 py-2 bg-white/10 rounded-full text-sm font-semibold uppercase tracking-wider text-gold">Programas Élite</span>
+            <h2 class="heading-font text-5xl md:text-6xl font-bold mt-4">Elige tu <span class="gold-text">Flujo</span></h2>
+            <p class="mt-4 text-white/70 max-w-lg mx-auto">Tres caminos diseñados para desbloquear el potencial único de cada niño.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+            <!-- Card 1 -->
+            <div class="card-premium p-10 text-center bg-white/10 backdrop-blur border border-white/10 hover:bg-white/20">
+                <div class="text-6xl mb-6">🎯</div>
+                <h3 class="heading-font text-3xl font-bold text-white">Focus Flow</h3>
+                <p class="text-white/70 mt-4">Entrenamiento de concentración y atención plena para reducir distracciones.</p>
+                <div class="mt-8 inline-block px-6 py-2 bg-gold/20 gold-text rounded-full text-sm font-semibold">Aprendizaje Acelerado</div>
+            </div>
+            <!-- Card 2 - Featured -->
+            <div class="card-premium p-10 text-center bg-white shadow-2xl scale-105 relative border-2 border-gold">
+                <div class="absolute -top-4 right-6 bg-gold text-white px-5 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider">Más Popular</div>
+                <div class="text-6xl mb-6">🌊</div>
+                <h3 class="heading-font text-3xl font-bold text-charcoal">Emotion Control</h3>
+                <p class="text-gray-600 mt-4">Domina tus emociones y transforma la ansiedad en fortaleza interior.</p>
+                <div class="mt-8 inline-block px-6 py-2 bg-olive/10 text-olive rounded-full text-sm font-semibold">Inteligencia Emocional</div>
+            </div>
+            <!-- Card 3 -->
+            <div class="card-premium p-10 text-center bg-white/10 backdrop-blur border border-white/10 hover:bg-white/20">
+                <div class="text-6xl mb-6">👥</div>
+                <h3 class="heading-font text-3xl font-bold text-white">Social Power</h3>
+                <p class="text-white/70 mt-4">Construye confianza y habilidades sociales para relaciones positivas.</p>
+                <div class="mt-8 inline-block px-6 py-2 bg-gold/20 gold-text rounded-full text-sm font-semibold">Liderazgo Juvenil</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ========== COACH ========== -->
+<section id="coach" class="py-32 px-6 cream-bg">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="order-2 lg:order-1">
+                <span class="inline-block px-6 py-2 bg-gold/10 gold-text rounded-full text-sm font-semibold uppercase tracking-wider">Tu Guía</span>
+                <h2 class="heading-font text-5xl md:text-6xl font-bold mt-4 leading-[1.1]">
+                    Jhomarami <span class="gold-text">Garcia</span>
+                </h2>
+                <p class="text-xl text-olive font-medium mt-2">Psicóloga Infantil y Adolescente • Fundadora</p>
+                <p class="mt-8 text-lg text-gray-600 leading-relaxed max-w-lg">
+                    Con más de una década dedicada al bienestar emocional de niños y adolescentes 
+                    en Tijuana, combino la ciencia psicológica con un enfoque cálido y humano 
+                    para desbloquear el potencial de cada joven.
+                </p>
+                
+                <!-- Credentials -->
+                <div class="mt-10 grid grid-cols-2 gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full olive-bg flex items-center justify-center text-white">🎓</div>
+                        <div><span class="font-semibold block">Maestría en Psicología</span><span class="text-sm text-gray-500">UABC</span></div>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full olive-bg flex items-center justify-center text-white">🏅</div>
+                        <div><span class="font-semibold block">Terapia Cognitivo-Conductual</span><span class="text-sm text-gray-500">Certificación Internacional</span></div>
+                    </div>
+                </div>
+
+                <button onclick="showBooking()" class="mt-10 btn-premium px-10 py-5 rounded-2xl text-lg font-semibold">
+                    <span>Agenda tu Sesión</span>
+                </button>
+            </div>
+
+            <div class="order-1 lg:order-2 relative">
+                <div class="absolute -inset-6 bg-gold/10 rounded-[40px] blur-2xl"></div>
+                <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&h=900&fit=crop&crop=center" 
+                     alt="Jhomarami Garcia" 
+                     class="rounded-[32px] shadow-2xl relative z-10 w-full object-cover" />
+                <!-- QR Business Card -->
+                <div class="absolute -bottom-8 -left-8 bg-white rounded-2xl shadow-2xl p-6 flex items-center gap-6 z-20">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://calendly.com/centmotion/jhomarami&color=4a5c3f" 
+                         alt="QR" class="w-16 h-16 rounded-xl" />
                     <div>
-                        <div class="text-2xl font-semibold">Entrenamiento consistente</div>
-                        <p class="text-gray-600 mt-4">Sesiones semanales que construyen resiliencia emocional con calidez.</p>
-                    </div>
-                </div>
-                <div class="card p-10 rounded-3xl flex gap-8">
-                    <div class="text-6xl">🌱</div>
-                    <div>
-                        <div class="text-2xl font-semibold">Crecimiento juguetón</div>
-                        <p class="text-gray-600 mt-4">Herramientas adaptadas a cada edad en un ambiente seguro y alegre.</p>
+                        <div class="font-bold text-sm">CentMotion</div>
+                        <div class="text-xs text-gray-500">Escanea y Agenda</div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- SERVICES -->
-    <section id="servicios" class="py-28 bg-gray-50">
-        <div class="max-w-screen-2xl mx-auto px-8">
-            <h2 class="heading-font text-center text-5xl mb-16 text-gray-900">Elige tu flujo</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="card p-10 rounded-3xl">
-                    <div class="text-6xl mb-8 text-[#5a6b4f]">🎯</div>
-                    <h3 class="heading-font text-3xl font-semibold">Focus Flow</h3>
-                    <p class="mt-6 text-gray-600">Mejora tu concentración y reduce distracciones.</p>
+<!-- ========== RESULTS ========== -->
+<section id="results" class="py-32 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="text-center">
+            <span class="inline-block px-6 py-2 bg-gold/10 gold-text rounded-full text-sm font-semibold uppercase tracking-wider">Historias Reales</span>
+            <h2 class="heading-font text-5xl md:text-6xl font-bold mt-4">Transformaciones que <span class="gold-text">inspiran</span></h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 mt-16">
+            <div class="card-premium p-10">
+                <div class="flex items-center gap-1 gold-text text-lg mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
                 </div>
-                <div class="card p-10 rounded-3xl border-2 border-[#d4c4a8]">
-                    <div class="text-6xl mb-8 text-[#5a6b4f]">🌊</div>
-                    <h3 class="heading-font text-3xl font-semibold">Emotion Control</h3>
-                    <p class="mt-6 text-gray-600">Domina tus emociones y transforma ansiedad en fuerza.</p>
-                    <span class="mt-8 inline-block px-6 py-2 bg-[#d4c4a8]/20 text-[#5a6b4f] text-sm rounded-3xl">Más Popular</span>
+                <p class="text-gray-700 leading-relaxed">"Mi hijo pasó de tener ansiedad constante a ser un niño seguro y feliz. CentMotion cambió nuestra vida."</p>
+                <div class="mt-6 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-2xl">👩</div>
+                    <div><span class="font-semibold block">María F.</span><span class="text-sm text-gray-500">Madre de Santiago, 9 años</span></div>
                 </div>
-                <div class="card p-10 rounded-3xl">
-                    <div class="text-6xl mb-8 text-[#5a6b4f]">👥</div>
-                    <h3 class="heading-font text-3xl font-semibold">Social Power</h3>
-                    <p class="mt-6 text-gray-600">Construye confianza y habilidades sociales positivas.</p>
+            </div>
+
+            <div class="card-premium p-10 border-2 border-gold/30">
+                <div class="flex items-center gap-1 gold-text text-lg mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-700 leading-relaxed">"Las herramientas que aprendí en Emotion Control me ayudaron a manejar el estrés escolar y mejorar mis notas."</p>
+                <div class="mt-6 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-2xl">🧑</div>
+                    <div><span class="font-semibold block">Diego R.</span><span class="text-sm text-gray-500">Estudiante, 14 años</span></div>
+                </div>
+            </div>
+
+            <div class="card-premium p-10">
+                <div class="flex items-center gap-1 gold-text text-lg mb-4">
+                    <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                </div>
+                <p class="text-gray-700 leading-relaxed">"La conexión que Jhomarami establece con los adolescentes es increíble. Mi hija realmente se siente escuchada."</p>
+                <div class="mt-6 flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center text-2xl">👩</div>
+                    <div><span class="font-semibold block">Patricia L.</span><span class="text-sm text-gray-500">Madre de Valeria, 12 años</span></div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- TU GUÍA -->
-    <section id="guia" class="py-32 bg-white">
-        <div class="max-w-screen-2xl mx-auto px-8">
-            <div class="grid lg:grid-cols-12 gap-16 items-center">
-                <div class="lg:col-span-5">
-                    <img src="https://picsum.photos/id/1015/800/920" alt="Jhomarami Garcia" class="rounded-3xl shadow-2xl">
-                </div>
-                <div class="lg:col-span-7">
-                    <span class="uppercase tracking-widest text-[#5a6b4f]">Tu Coach</span>
-                    <h2 class="heading-font text-6xl mt-4 text-gray-900">Jhomarami Garcia</h2>
-                    <p class="text-xl text-[#5a6b4f]">Psicóloga Infantil y Adolescente • Fundadora</p>
-                    
-                    <div class="mt-12 text-lg text-gray-600 max-w-xl">
-                        Con dedicación y experiencia, guío a niños y adolescentes en Tijuana hacia un mayor bienestar emocional en un espacio seguro y lleno de posibilidades.
-                    </div>
-                    
-                    <!-- Elegant Business Card -->
-                    <div class="mt-16 card p-10 rounded-3xl max-w-md">
-                        <div class="flex items-center gap-x-5">
-                            <div class="w-14 h-14 bg-[#5a6b4f] rounded-2xl flex items-center justify-center text-3xl text-white">🧠</div>
-                            <div class="heading-font text-3xl">CentMotion</div>
-                        </div>
-                        <div class="mt-10 text-2xl font-medium">Jhomarami Garcia</div>
-                        <div class="text-gray-600">Psicóloga Especialista</div>
-                        
-                        <div class="mt-12 flex justify-center">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://calendly.com/centmotion/jhomarami&color=5a6b4f" alt="QR Code" class="rounded-2xl shadow">
-                        </div>
-                        <p class="text-center text-[#5a6b4f] mt-5 text-sm">Escanea para agendar tu primera sesión</p>
-                    </div>
-                </div>
-            </div>
+<!-- ========== FINAL CTA ========== -->
+<section class="py-32 px-6 relative overflow-hidden" style="background: linear-gradient(135deg, var(--charcoal), #2a2a2a);">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-gold/5 rounded-full blur-3xl"></div>
+    
+    <div class="max-w-4xl mx-auto text-center relative z-10">
+        <div class="inline-block px-6 py-2 bg-gold/10 gold-text rounded-full text-sm font-semibold uppercase tracking-wider mb-6">Empieza Hoy</div>
+        <h2 class="heading-font text-5xl md:text-7xl font-bold text-white leading-[1.1]">
+            ¿Listo para <span class="gold-text">entrenar</span> <br/>tu mente?
+        </h2>
+        <p class="mt-6 text-white/60 text-lg max-w-lg mx-auto">
+            Da el primer paso hacia una vida emocionalmente más fuerte y equilibrada.
+        </p>
+        <button onclick="showBooking()" class="mt-12 btn-premium px-14 py-7 rounded-2xl text-2xl font-bold flex items-center gap-5 mx-auto shadow-2xl">
+            <i class="fa-regular fa-calendar-check text-3xl"></i>
+            <span>Agenda tu Sesión Gratuita</span>
+        </button>
+        <p class="mt-6 text-white/40 text-sm">Sin compromiso • 30 minutos • Conoce tu potencial</p>
+    </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="bg-charcoal/95 text-white/50 py-12 px-6 border-t border-white/5">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="flex items-center gap-3">
+            <span class="heading-font text-2xl font-bold text-white">Cent<span class="gold-text">Motion</span></span>
+            <span class="text-xs bg-white/5 px-4 py-1.5 rounded-full">Tijuana, BC</span>
         </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="py-32 bg-[#d4c4a8]/10 text-center">
-        <div class="max-w-xl mx-auto px-6">
-            <h2 class="heading-font text-6xl text-gray-900">Comienza hoy tu camino hacia una mente más fuerte</h2>
-            <button onclick="showBooking()" 
-                    class="accent-button mt-12 px-16 py-8 text-2xl font-medium text-white rounded-3xl shadow-xl">
-                Agenda tu Sesión Gratuita
-            </button>
+        <div class="flex items-center gap-8 text-sm">
+            <a href="#" class="hover:text-white transition">Política de Privacidad</a>
+            <a href="#" class="hover:text-white transition">Términos</a>
+            <span>© 2026 CentMotion</span>
         </div>
-    </section>
+        <div class="flex items-center gap-4 text-lg">
+            <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-facebook"></i></a>
+            <a href="#" class="hover:text-gold transition"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+    </div>
+</footer>
 
-    <script>
-        function updateBattery(val) {
-            document.getElementById('battery-value').textContent = val;
-            const fb = document.getElementById('battery-feedback');
-            if (val >= 8) fb.textContent = "¡Modo superpoder activado! 🌟";
-            else if (val >= 5) fb.textContent = "¡Buen nivel! Sigamos creciendo ⚡";
-            else fb.textContent = "Vamos a recargar esa batería 💛";
-        }
+<!-- ========== SCRIPTS ========== -->
+<script>
+    function updateBattery(val) {
+        document.getElementById('battery-value').textContent = val;
+        const fb = document.getElementById('battery-feedback');
+        const slider = document.getElementById('mood-slider');
+        const percent = (val / 10) * 100;
+        slider.style.background = `linear-gradient(to right, var(--gold) 0%, var(--gold) ${percent}%, #e5e5e5 ${percent}%, #e5e5e5 100%)`;
+        
+        if (val >= 8) fb.innerHTML = '🌟 ¡Modo Superpoder Activado! Sigue brillando.';
+        else if (val >= 5) fb.innerHTML = '⚡ ¡Buen nivel! Sigamos creciendo juntos.';
+        else fb.innerHTML = '💛 Vamos a recargar esa batería. Estamos aquí para ti.';
+    }
 
-        function showBooking() {
-            window.open('https://calendly.com/centmotion/jhomarami', '_blank');
-        }
+    function showBooking() {
+        window.open('https://calendly.com/centmotion/jhomarami', '_blank');
+    }
 
-        function scrollToMood() {
-            document.getElementById('mood-section').scrollIntoView({ behavior: 'smooth' });
-        }
+    // Initialize
+    window.onload = () => updateBattery(7);
 
-        window.onload = () => updateBattery(7);
-    </script>
+    // Smooth scroll for nav links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
+        });
+    });
+
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-premium').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'all 0.8s cubic-bezier(0.23, 1, 0.32, 1)';
+        observer.observe(el);
+    });
+</script>
+
 </body>
 </html>
